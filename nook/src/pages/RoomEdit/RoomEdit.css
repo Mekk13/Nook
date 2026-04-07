@@ -1,0 +1,201 @@
+/* --- YOUR ORIGINAL STYLES --- */
+.edit-room-container {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  font-family: 'Baloo';
+  background-image: url('../../assets/BG.jpg');
+  background-size: cover;     
+  background-position: center; 
+  background-repeat: no-repeat;
+  min-height: 100vh;          
+  width: 100%;                 
+  box-sizing: border-box;     
+  justify-content: center;
+}
+
+.edit-card {
+  background-color: #D9DBF1; 
+  width: 100%;
+  max-width: 750px;
+  border-radius: 35px;
+  padding: 40px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border: 1px solid #6971A8;
+  box-sizing: border-box;
+}
+
+.edit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.edit-title {
+  font-size: 2.2rem;
+  color: #5d669e;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.form-group label {
+  min-width: 140px;
+  text-align: right;
+  color: #8E9DCC;
+  font-size: 1.1rem;
+}
+
+.form-input, .form-textarea, .form-select-display {
+  background-color: #F9F9ED; 
+  border: 3px solid #8E9DCC; 
+  border-radius: 25px;
+  padding: 10px 20px;
+  color: #5d669e;
+  font-family: inherit;
+  font-size: 1rem;
+  flex-grow: 1;
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: none;
+  border-radius: 20px;
+}
+
+.number-stepper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.step-btn {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 2px solid #b8bee6;
+  background: white;
+  color: #5d669e;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.step-display {
+  background: white;
+  border: 2px solid #b8bee6;
+  padding: 5px 25px;
+  border-radius: 20px;
+  color: #5d669e;
+  font-weight: bold;
+}
+
+.nav-btn {
+  padding: 12px 28px;
+  border-radius: 18px;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.cancel {
+  background-color: #F98D8D;
+  border: 2px solid #9B3232;
+  color: black;
+}
+
+.save-btn {
+  background-color: #DBF4A7;
+  border: 2px solid #799B32;
+  color: black;
+}
+
+.manage-data-btn {
+  background-color: #DBF4A7;
+  border: 2px solid #799B32;
+  border-radius: 15px;
+  padding: 10px 20px;
+  color: #5b6394;
+  font-family: 'Baloo';
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px #818d6f;
+}
+
+/* --- RESPONSIVE FIXES --- */
+
+@media (max-width: 768px) {
+  .edit-card {
+    padding: 25px 20px;
+    border-radius: 25px;
+    margin: 10px;
+  }
+
+  .edit-header {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .edit-title {
+    font-size: 1.8rem;
+  }
+
+  .form-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .form-group label {
+    text-align: left;
+    min-width: unset;
+  }
+
+  .form-input, .form-textarea, .form-select-display {
+    width: 100%;
+  }
+
+  .number-stepper {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  /* Bottom Buttons Stack */
+  .edit-header > div:last-child {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .nav-btn {
+    flex: 1;
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+
+  .manage-data-btn {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+  }
+}
