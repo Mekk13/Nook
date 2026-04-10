@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1774567966687" clover="3.2.0">
+  <project timestamp="1774567966687" name="All files">
+    <metrics statements="65" coveredstatements="65" conditionals="46" coveredconditionals="46" methods="43" coveredmethods="43" elements="154" coveredelements="154" complexity="0" loc="65" ncloc="65" packages="10" files="19" classes="19"/>
+    <package name="assets">
+      <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="Decoration1.svg" path="C:\Users\Mekaniker\university\sem4\MPP\Nook\nook\src\assets\Decoration1.svg">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="logo.svg" path="C:\Users\Mekaniker\university\sem4\MPP\Nook\nook\src\assets\logo.svg">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="components.MainLayout">
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+      <file name="MainLayout.tsx" path="C:\Users\Mekaniker\university\sem4\MPP\Nook\nook\src\components\MainLayout\MainLayout.tsx">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+        <line num="7" count="27" type="stmt"/>
+        <line num="9" count="27" type="stmt"/>
+        <line num="11" count="27" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.MenuButton">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="MenuButton.css" path="C:\Users\Mekaniker\university\sem4\MPP\Nook\nook\src\components\MenuButton\MenuButton.css">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="MenuButton.tsx" path="C:\Users\Mekaniker\university\sem4\MPP\Nook\nook\src\components\MenuButton\MenuButton.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="7" count="4" type="stmt"/>
+        <line num="8" count="20" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.Sidebar">
+      <metrics statements="8" coveredstatements="8" conditionals="8" coveredconditionals="8" methods="12" coveredmethods="12"/>
+      <file name="Sidebar.css" path="C:\Users\Mekaniker\university\sem4\MPP\Nook\nook\src\components\Sidebar\Sidebar.css">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="Sidebar.tsx" path="C:\Users\Mekaniker\university\sem4\MPP\Nook\nook\src\components\Sidebar\Sidebar.tsx">
+        <metrics statements="8" coveredstatements="8" conditionals="8" coveredconditionals="8" methods="12" coveredmethods="12"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="11" count="24" type="stmt"/>
+        <line num="13" count="24" type="stmt"/>
+        <line num="15" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="22" count="24" type="stmt"/>
+        <line num="23" count="24" type="stmt"/>
+        <line num="26" count="24" type="stmt"/>
+      </file>
+    </package>
+    <package name="components.SuccessWindow">
+      <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+      <file name="SuccessWindow.css" path="C:\Users\Mekaniker\university\sem4\MPP\Nook\nook\src\components\SuccessWindow\SuccessWindow.css">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="SuccessWindow.tsx" path="C:\Users\Mekaniker\university\sem4\MPP\Nook\nook\src\components\SuccessWindow\SuccessWindow.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="13" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="15" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="pages.Presentation">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="Presentation.css" path="C:\Users\Mekaniker\university\sem4\MPP\Nook\nook\src\pages\Presentation\Presentation.css">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="Presentation.tsx" path="C:\Users\Mekaniker\university\sem4\MPP\Nook\nook\src\pages\Presentation\Presentation.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="pages.RoomCreate">
+      <metrics statements="15" coveredstatements="15" conditionals="10" coveredconditionals="10" methods="7" coveredmethods="7"/>
+      <file name="RoomCreate.css" path="C:\Users\Mekaniker\university\sem4\MPP\Nook\nook\src\pages\RoomCreate\RoomCreate.css">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="RoomCreate.tsx" path="C:\Users\Mekaniker\university\sem4\MPP\Nook\nook\src\pages\RoomCreate\RoomCreate.tsx">
+        <metrics statements="15" coveredstatements="15" conditionals="10" coveredconditionals="10" methods="7" coveredmethods="7"/>
+        <line num="9" count="9" type="stmt"/>
+        <line num="10" count="9" type="stmt"/>
+        <line num="12" count="9" type="stmt"/>
+        <line num="13" count="9" type="stmt"/>
+        <line num="14" count="9" type="stmt"/>
+        <line num="15" count="9" type="stmt"/>
+        <line num="17" count="9" type="stmt"/>
+        <line num="19" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="24" count="9" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="46" count="1" type="stmt"/>
+        <line num="68" count="1" type="stmt"/>
+        <line num="81" count="1" type="stmt"/>
+        <line num="94" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="pages.RoomDetail">
+      <metrics statements="7" coveredstatements="7" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
+      <file name="RoomDetail.css" path="C:\Users\Mekaniker\university\sem4\MPP\Nook\nook\src\pages\RoomDetail\RoomDetail.css">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="RoomDetail.tsx" path="C:\Users\Mekaniker\university\sem4\MPP\Nook\nook\src\pages\RoomDetail\RoomDetail.tsx">
+        <metrics statements="7" coveredstatements="7" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
+        <line num="7" count="3" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="10" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="25" count="2" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="pages.RoomEdit">
+      <metrics statements="11" coveredstatements="11" conditionals="12" coveredconditionals="12" methods="6" coveredmethods="6"/>
+      <file name="RoomEdit.css" path="C:\Users\Mekaniker\university\sem4\MPP\Nook\nook\src\pages\RoomEdit\RoomEdit.css">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="RoomEdit.tsx" path="C:\Users\Mekaniker\university\sem4\MPP\Nook\nook\src\pages\RoomEdit\RoomEdit.tsx">
+        <metrics statements="11" coveredstatements="11" conditionals="12" coveredconditionals="12" methods="6" coveredmethods="6"/>
+        <line num="7" count="4" type="stmt"/>
+        <line num="20" count="4" type="stmt"/>
+        <line num="23" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="33" count="3" type="stmt"/>
+        <line num="34" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="37" count="3" type="stmt"/>
+        <line num="44" count="1" type="stmt"/>
+        <line num="61" count="1" type="stmt"/>
+        <line num="86" count="1" type="stmt"/>
+        <line num="99" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="pages.RoomMaster">
+      <metrics statements="12" coveredstatements="12" conditionals="10" coveredconditionals="10" methods="8" coveredmethods="8"/>
+      <file name="RoomMaster.css" path="C:\Users\Mekaniker\university\sem4\MPP\Nook\nook\src\pages\RoomMaster\RoomMaster.css">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="RoomMaster.tsx" path="C:\Users\Mekaniker\university\sem4\MPP\Nook\nook\src\pages\RoomMaster\RoomMaster.tsx">
+        <metrics statements="12" coveredstatements="12" conditionals="10" coveredconditionals="10" methods="8" coveredmethods="8"/>
+        <line num="7" count="4" type="stmt"/>
+        <line num="19" count="4" type="stmt"/>
+        <line num="22" count="4" type="stmt"/>
+        <line num="23" count="2" type="stmt"/>
+        <line num="24" count="2" type="stmt"/>
+        <line num="27" count="4" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="41" count="1" type="stmt"/>
+        <line num="56" count="3" type="stmt"/>
+        <line num="61" count="1" type="stmt"/>
+        <line num="63" count="1" type="stmt"/>
+        <line num="65" count="1" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
