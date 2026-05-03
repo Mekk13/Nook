@@ -1,0 +1,19 @@
+[
+  {
+    "id": "1",
+    "name": "Java Study Group",
+    "creator": "Alex",
+    "maxParticipants": 10,
+    "description": "Preparing for the backend exam!",
+    "status": "Public",
+    "createdAt": "2023-10-27",
+    "participants": [
+      {
+        "id": "p1",
+        "name": "Alex",
+        "studyStatus": "Studying",
+        "sessions": []
+      }
+    ]
+  }
+]

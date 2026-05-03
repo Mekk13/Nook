@@ -1,0 +1,99 @@
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 120px 0 20px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+  min-height: 90px;
+  
+  /* The "Touch the Sides" logic */
+  width: 100%;       /* Uses Viewport Width instead of % */
+  margin: 0;          /* Ensure no margins are pushing it */
+  position: relative; /* If you want it to scroll away */
+  /* OR use position: fixed; top: 0; left: 0; if you want it to stay put */
+  
+  box-sizing: border-box;
+  box-shadow: 0 5px 15px #6274bede;
+  z-index: 10;
+  padding-right: 25px;
+}
+
+.upper-bar__logo-group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.upper-bar__logo-img {
+  height: 90px;
+  width: auto;
+}
+
+.upper-bar__logo-text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-left: -20px;
+}
+
+.upper-bar__logo-text h1 {
+  margin: 0;
+  font-size: 22px;
+  color: #7a86b6;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.upper-bar__logo-text h3 {
+  margin: 0;
+  font-size: 13px;
+  color: #9aa4cc;
+  font-weight: 400;
+  margin-top: 4px;
+}
+
+.upper-bar__user-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.upper-bar__user-profile:hover {
+  transform: scale(1.1);transform: translateY(-2px); 
+  filter: brightness(1.1);      
+}
+
+.upper-bar__pfp-img {
+  width: 47px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.upper-bar__user-profile span {
+  font-size: 15px;
+  color: #7a86b6;
+  font-weight: 500;
+}
+
+/* 1. Ensure the container for Alex + Burger is a horizontal flexbox */
+.upper-bar__actions {
+  display: flex;
+  flex-direction: row; /* Keep them side-by-side */
+  align-items: center; /* Center them vertically */
+  gap: 15px;           /* Space between Alex and the Burger */
+}
+
+/* 2. Neutralize the absolute positioning from MenuButton.css */
+.upper-bar__actions .menu-button {
+  position: static;    /* This cancels 'absolute', 'top', and 'right' */
+  margin: 0;           /* Clear any rogue margins */
+  
+  /* Use this to nudge it up if it still feels visually 'heavy' */
+  transform: translateY(-5px); 
+}

@@ -1,0 +1,95 @@
+.home-container {
+  width: 100%;
+  height: calc(100vh - 80px);
+  background: linear-gradient(160deg, #b8c5e8 0%, #c9a8d4 50%, #c9a0d0 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  z-index: 1; /* lower than top-bar's z-index: 10 */
+}
+
+.home-content {
+  text-align: center;
+  margin-top: -40px;
+}
+
+.home-greeting {
+  font-size: 28px;
+  color: #ffffff;
+  font-weight: 600;
+  margin: 0 0 10px 0;
+  letter-spacing: 0.01em;
+}
+
+.home-subtext {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0 0 48px 0;
+  font-weight: 400;
+}
+
+.card-group {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+}
+
+.nook-card {
+  background: #f5f3e4;
+  border: none;
+  border-radius: 20px;
+  padding: 48px 28px;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+              box-shadow 0.35s ease;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+}
+
+.nook-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+.card-label {
+  font-size: 15px;
+  color: #8c98c9;
+  margin-bottom: 8px;
+  font-weight: 400;
+}
+
+.card-title {
+  font-size: 20px;
+  color: #7a86b6;
+  font-weight: 600;
+}
+
+.stats-toggle-btn {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.85);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stats-toggle-btn:hover {
+  transform: translateX(-50%) translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+

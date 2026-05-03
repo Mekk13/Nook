@@ -1,0 +1,114 @@
+.esm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(142, 157, 204, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  font-family: 'Baloo', sans-serif;
+}
+
+.esm-card {
+  background: #FAF9F0;
+  border-radius: 30px;
+  border: 3px solid #8E9DCC;
+  box-shadow: 0 10px 0 rgba(0,0,0,0.1);
+  padding: 36px 40px;
+  width: 90%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.esm-title {
+  color: #5b6394;
+  text-align: center;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.esm-duration {
+  text-align: center;
+  color: #8E9DCC;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.esm-duration strong {
+  color: #5b6394;
+}
+
+.esm-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.esm-field label {
+  color: #5b6394;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.esm-input {
+  border: 2px solid #8E9DCC;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-family: 'Baloo', sans-serif;
+  font-size: 0.95rem;
+  color: #5b6394;
+  background: white;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.esm-input:focus {
+  border-color: #5b6394;
+}
+
+.esm-input::placeholder {
+  color: #b8c2d9;
+}
+
+.esm-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.esm-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 14px;
+  border: 2px solid;
+  font-family: 'Baloo', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.esm-btn:active {
+  transform: scale(0.97);
+}
+
+.esm-btn.cancel {
+  background: #f1f1f1;
+  border-color: #b8c2d9;
+  color: #8E9DCC;
+}
+
+.esm-btn.confirm {
+  background: #DBF4A7;
+  border-color: #799B32;
+  color: #3d5a00;
+}
+
+.esm-btn.confirm:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.esm-hint { color: #f98d8d; font-size: 0.8rem; }

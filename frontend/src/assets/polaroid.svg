@@ -1,0 +1,20 @@
+<svg viewBox="0 0 350 380" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="shadow">
+      <feGaussianBlur stdDeviation="3" />
+    </filter>
+    
+    <mask id="photo-mask">
+      <rect width="350" height="380" fill="white" />
+      <rect x="25" y="20" width="300" height="300" fill="black" />
+    </mask>
+  </defs>
+
+  <rect x="10" y="10" width="330" height="360" fill="#000" opacity="0.2" filter="url(#shadow)" />
+  
+  <rect x="5" y="5" width="330" height="362" fill="#f2f2f2" />
+  
+  <rect x="24" y="19" width="302" height="302" fill="none" stroke="#d1d1d1" stroke-width="1" />
+  
+  <rect x="25" y="20" width="300" height="300" fill="#222" opacity="0.1" />
+</svg>
