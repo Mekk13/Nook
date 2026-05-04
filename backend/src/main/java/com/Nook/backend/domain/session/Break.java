@@ -1,5 +1,6 @@
 package com.Nook.backend.domain.session;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -7,18 +8,24 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-// Represents one pause within a study session.
-// A session can have many breaks — the user hits pause, then resume, possibly many times.
-// At the end of the session the frontend shows:
-//   "You studied for 47 minutes, took 2 breaks (5 min + 8 min)"
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name = "breaks")
 public class Break {
 
+    @Id
+    @Column(nullable = false, unique = true)
     private String id;
+
+    @Column(name = "session_id", nullable = false, insertable = false, updatable = false)
     private String sessionId;
+
+    @Column(name = "started_at", nullable = false)
     private LocalDateTime startedAt;
+
+    @Column(name = "ended_at")
     private LocalDateTime endedAt;
 }

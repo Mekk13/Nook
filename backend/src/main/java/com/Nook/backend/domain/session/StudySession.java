@@ -1,5 +1,6 @@
 package com.Nook.backend.domain.session;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,30 +10,35 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-// Represents one complete study session.
-// Flow:
-//   1. User hits "Start" → session created with startedAt set, endedAt null
-//   2. User hits "Pause" → a Break is created with startedAt set
-//   3. User hits "Resume" → that Break gets endedAt set
-//   4. User hits "Finish" → they name the session + pick a subject,
-//      endedAt is set on the session, it's now complete and saved to history
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name = "study_sessions")
 public class StudySession {
 
+    @Id
+    @Column(nullable = false, unique = true)
     private String id;
+
+    @Column(name = "user_id")
     private String userId;
+
+    @Column(name = "room_id")
     private String roomId;
+
     private String name;
     private String subject;
+
+    @Column(name = "started_at")
     private LocalDateTime startedAt;
+
+    @Column(name = "ended_at")
     private LocalDateTime endedAt;
 
-    // All the pauses taken during this session
-    // @Builder.Default is needed to make Lombok's builder initialise this
-    // as an empty list instead of null
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JoinColumn(name = "session_id", nullable = false)
     @Builder.Default
     private List<Break> breaks = new ArrayList<>();
 }

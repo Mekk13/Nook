@@ -65,7 +65,7 @@ function Lobby() {
   // Fetch members
   useEffect(() => {
     if (!selectedRoomId) return;
-    fetch(`http://localhost:8080/api/rooms/${selectedRoomId}/members`, {
+    fetch(`${import.meta.env.VITE_API_URL}/api/rooms/${selectedRoomId}/members`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())

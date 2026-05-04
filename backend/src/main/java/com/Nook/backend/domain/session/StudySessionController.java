@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/sessions")
 @RequiredArgsConstructor
@@ -97,5 +99,21 @@ public class StudySessionController {
     ) {
         String userId = SecurityUtils.getCurrentUserId();
         return ResponseEntity.ok(sessionService.updateSession(userId, id, request));
+    }
+
+    @GetMapping("/my/filter")
+    public ResponseEntity<Page<SessionResponse>> getMySessionsBySubject(
+            @RequestParam String subject,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        String userId = SecurityUtils.getCurrentUserId();
+        return ResponseEntity.ok(sessionService.getMySessionsBySubject(userId, subject, page, size));
+    }
+
+    @GetMapping("/my/subjects")
+    public ResponseEntity<List<String>> getMySubjects() {
+        String userId = SecurityUtils.getCurrentUserId();
+        return ResponseEntity.ok(sessionService.getMySubjects(userId));
     }
 }

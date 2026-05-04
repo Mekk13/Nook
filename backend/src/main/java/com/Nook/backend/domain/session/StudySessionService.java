@@ -224,4 +224,13 @@ public class StudySessionService {
         sessionRepository.update(session);
         return SessionResponse.from(session);
     }
+
+    public Page<SessionResponse> getMySessionsBySubject(String userId, String subject, int page, int size) {
+        List<StudySession> all = sessionRepository.findByUserIdAndSubjectContainingIgnoreCase(userId, subject);
+        return paginate(all, page, size);
+    }
+
+    public List<String> getMySubjects(String userId) {
+        return sessionRepository.findDistinctSubjectsByUserId(userId);
+    }
 }

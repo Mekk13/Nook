@@ -17,8 +17,10 @@ const PAGE_SIZE = 8;
 
 function formatDateTime(iso: string) {
   return new Date(iso).toLocaleString([], {
-    month: "short", day: "2-digit",
-    hour: "2-digit", minute: "2-digit",
+    month: "short",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
   });
 }
 
@@ -32,7 +34,8 @@ function formatDuration(hours: number) {
 }
 
 function BreakList({ breaks }: { breaks: BreakResponse[] }) {
-  if (!breaks || breaks.length === 0) return <p className="msd-no-breaks">No breaks taken.</p>;
+  if (!breaks || breaks.length === 0)
+    return <p className="msd-no-breaks">No breaks taken.</p>;
   return (
     <div className="msd-breaks">
       {breaks.map((b, i) => (
@@ -47,7 +50,10 @@ function BreakList({ breaks }: { breaks: BreakResponse[] }) {
   );
 }
 
-export default function MySessionsDrawer({ isOpen, onClose }: MySessionsDrawerProps) {
+export default function MySessionsDrawer({
+  isOpen,
+  onClose,
+}: MySessionsDrawerProps) {
   const token = useAuthStore.getState().token;
   const [sessions, setSessions] = useState<StudySession[]>([]);
   const [loading, setLoading] = useState(false);
@@ -64,16 +70,36 @@ export default function MySessionsDrawer({ isOpen, onClose }: MySessionsDrawerPr
   const sentinelRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
 
-  const fetchPage = useCallback(async (pageNum: number) => {
-    const res = await fetch(
-      `http://localhost:8080/api/sessions/my?page=${pageNum}&size=${PAGE_SIZE}`,
-      { headers: { Authorization: `Bearer ${token}` } }
-    );
-    const data = await res.json();
-    const content: StudySession[] = data.content ?? [];
-    const totalPages: number = data.totalPages ?? 1;
-    return { sessions: content, hasMore: pageNum + 1 < totalPages };
-  }, [token]);
+  const [subjectFilter, setSubjectFilter] = useState("");
+  const [appliedFilter, setAppliedFilter] = useState("");
+  const [subjects, setSubjects] = useState<string[]>([]);
+
+  const fetchPage = useCallback(
+    async (pageNum: number) => {
+      const url = appliedFilter
+        ? `${import.meta.env.VITE_API_URL}/api/sessions/my/filter?subject=${encodeURIComponent(appliedFilter)}&page=${pageNum}&size=${PAGE_SIZE}`
+        : `${import.meta.env.VITE_API_URL}/api/sessions/my?page=${pageNum}&size=${PAGE_SIZE}`;
+      const res = await fetch(url, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const data = await res.json();
+      const content: StudySession[] = data.content ?? [];
+      const totalPages: number = data.totalPages ?? 1;
+      return { sessions: content, hasMore: pageNum + 1 < totalPages };
+    },
+    [token, appliedFilter],
+  );
+
+  const resetAndReload = useCallback((filter: string) => {
+    setSessions([]);
+    setHasMore(true);
+    setExpandedId(null);
+    pageRef.current = 0;
+    hasMoreRef.current = true;
+    loadingRef.current = false;
+    seenIdsRef.current = new Set();
+    setAppliedFilter(filter);
+  }, []);
 
   const loadMore = useCallback(async () => {
     if (loadingRef.current || !hasMoreRef.current) return;
@@ -81,9 +107,11 @@ export default function MySessionsDrawer({ isOpen, onClose }: MySessionsDrawerPr
     setLoading(true);
     try {
       const result = await fetchPage(pageRef.current);
-      const novel = result.sessions.filter(s => !seenIdsRef.current.has(s.id));
-      novel.forEach(s => seenIdsRef.current.add(s.id));
-      setSessions(prev => [...prev, ...novel]);
+      const novel = result.sessions.filter(
+        (s) => !seenIdsRef.current.has(s.id),
+      );
+      novel.forEach((s) => seenIdsRef.current.add(s.id));
+      setSessions((prev) => [...prev, ...novel]);
       hasMoreRef.current = result.hasMore;
       setHasMore(result.hasMore);
       pageRef.current += 1;
@@ -111,8 +139,15 @@ export default function MySessionsDrawer({ isOpen, onClose }: MySessionsDrawerPr
       loadingRef.current = true;
       setLoading(true);
       try {
-        const result = await fetchPage(0);
-        result.sessions.forEach(s => seenIdsRef.current.add(s.id));
+        const [result, subjectsRes] = await Promise.all([
+          fetchPage(0),
+          fetch(`${import.meta.env.VITE_API_URL}/api/sessions/my/subjects`, {
+            headers: { Authorization: `Bearer ${token}` },
+          }),
+        ]);
+        const subjectList: string[] = await subjectsRes.json();
+        setSubjects(subjectList);
+        result.sessions.forEach((s) => seenIdsRef.current.add(s.id));
         setSessions(result.sessions);
         hasMoreRef.current = result.hasMore;
         setHasMore(result.hasMore);
@@ -122,6 +157,7 @@ export default function MySessionsDrawer({ isOpen, onClose }: MySessionsDrawerPr
         setLoading(false);
       }
     };
+
     init();
   }, [isOpen, fetchPage]);
 
@@ -130,8 +166,10 @@ export default function MySessionsDrawer({ isOpen, onClose }: MySessionsDrawerPr
     const list = listRef.current;
     if (!sentinel || !list) return;
     const observer = new IntersectionObserver(
-      entries => { if (entries[0].isIntersecting) loadMore(); },
-      { root: list, threshold: 0.1 }
+      (entries) => {
+        if (entries[0].isIntersecting) loadMore();
+      },
+      { root: list, threshold: 0.1 },
     );
     observer.observe(sentinel);
     return () => observer.disconnect();
@@ -140,11 +178,11 @@ export default function MySessionsDrawer({ isOpen, onClose }: MySessionsDrawerPr
   const handleDelete = async (sessionId: string) => {
     if (!confirm("Delete this session?")) return;
     try {
-      await fetch(`http://localhost:8080/api/sessions/${sessionId}`, {
+      await fetch(`${import.meta.env.VITE_API_URL}/api/sessions/${sessionId}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
-      setSessions(prev => prev.filter(s => s.id !== sessionId));
+      setSessions((prev) => prev.filter((s) => s.id !== sessionId));
       seenIdsRef.current.delete(sessionId);
     } catch {
       console.error("Failed to delete session");
@@ -159,14 +197,25 @@ export default function MySessionsDrawer({ isOpen, onClose }: MySessionsDrawerPr
   const handleEditSave = async (sessionId: string) => {
     setSaving(true);
     try {
-      const res = await fetch(`http://localhost:8080/api/sessions/${sessionId}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ name: editForm.name, subject: editForm.subject }),
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/sessions/${sessionId}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            name: editForm.name,
+            subject: editForm.subject,
+          }),
+        },
+      );
       if (!res.ok) return;
       const updated: StudySession = await res.json();
-      setSessions(prev => prev.map(s => s.id === sessionId ? updated : s));
+      setSessions((prev) =>
+        prev.map((s) => (s.id === sessionId ? updated : s)),
+      );
       setEditingId(null);
     } catch {
       console.error("Failed to save session");
@@ -177,16 +226,38 @@ export default function MySessionsDrawer({ isOpen, onClose }: MySessionsDrawerPr
 
   return (
     <div className={`msd-backdrop ${isOpen ? "open" : ""}`} onClick={onClose}>
-      <div className="msd-drawer" onClick={e => e.stopPropagation()}>
+      <div className="msd-drawer" onClick={(e) => e.stopPropagation()}>
         <div className="msd-header">
           <h2 className="msd-title">My Sessions</h2>
-          <button className="msd-close" onClick={onClose}>×</button>
+          <button className="msd-close" onClick={onClose}>
+            ×
+          </button>
+        </div>
+
+        <div className="msd-filter-bar">
+          <select
+            className="msd-filter-input"
+            value={subjectFilter}
+            onChange={(e) => {
+              setSubjectFilter(e.target.value);
+              resetAndReload(e.target.value);
+            }}
+          >
+            <option value="">All subjects</option>
+            {subjects.map((s) => (
+              <option key={s} value={s}>
+                {s}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="msd-list" ref={listRef}>
-          {sessions.length === 0 && !loading && <p className="msd-empty">No sessions yet.</p>}
+          {sessions.length === 0 && !loading && (
+            <p className="msd-empty">No sessions yet.</p>
+          )}
 
-          {sessions.map(s => (
+          {sessions.map((s) => (
             <div key={s.id} className="msd-session-card">
               {editingId === s.id ? (
                 <div className="msd-edit-form">
@@ -195,7 +266,9 @@ export default function MySessionsDrawer({ isOpen, onClose }: MySessionsDrawerPr
                     <input
                       className="msd-edit-input"
                       value={editForm.name}
-                      onChange={e => setEditForm(f => ({ ...f, name: e.target.value }))}
+                      onChange={(e) =>
+                        setEditForm((f) => ({ ...f, name: e.target.value }))
+                      }
                       minLength={2}
                     />
                   </div>
@@ -204,32 +277,51 @@ export default function MySessionsDrawer({ isOpen, onClose }: MySessionsDrawerPr
                     <input
                       className="msd-edit-input"
                       value={editForm.subject}
-                      onChange={e => setEditForm(f => ({ ...f, subject: e.target.value }))}
+                      onChange={(e) =>
+                        setEditForm((f) => ({ ...f, subject: e.target.value }))
+                      }
                       minLength={2}
                     />
                   </div>
                   <div className="msd-edit-actions">
-                    <button className="msd-btn cancel" onClick={() => setEditingId(null)}>Cancel</button>
+                    <button
+                      className="msd-btn cancel"
+                      onClick={() => setEditingId(null)}
+                    >
+                      Cancel
+                    </button>
                     <button
                       className="msd-btn save"
                       onClick={() => handleEditSave(s.id)}
                       disabled={saving || editForm.name.trim().length < 2}
-                    >{saving ? "Saving..." : "Save"}</button>
+                    >
+                      {saving ? "Saving..." : "Save"}
+                    </button>
                   </div>
                 </div>
               ) : (
                 <>
                   <div
                     className="msd-session-header"
-                    onClick={() => setExpandedId(expandedId === s.id ? null : s.id)}
+                    onClick={() =>
+                      setExpandedId(expandedId === s.id ? null : s.id)
+                    }
                   >
                     <div className="msd-session-info">
-                      <span className="msd-session-name">{s.name ?? "Unnamed"}</span>
-                      <span className="msd-session-subject">{s.subject ?? "—"}</span>
+                      <span className="msd-session-name">
+                        {s.name ?? "Unnamed"}
+                      </span>
+                      <span className="msd-session-subject">
+                        {s.subject ?? "—"}
+                      </span>
                     </div>
                     <div className="msd-session-meta">
-                      <span className="msd-session-duration">{formatDuration(s.durationHours)}</span>
-                      <span className="msd-session-expand">{expandedId === s.id ? "▲" : "▼"}</span>
+                      <span className="msd-session-duration">
+                        {formatDuration(s.durationHours)}
+                      </span>
+                      <span className="msd-session-expand">
+                        {expandedId === s.id ? "▲" : "▼"}
+                      </span>
                     </div>
                   </div>
 
@@ -241,12 +333,26 @@ export default function MySessionsDrawer({ isOpen, onClose }: MySessionsDrawerPr
                       </div>
                       <div className="msd-detail-row">
                         <span>Ended</span>
-                        <span>{s.endedAt ? formatDateTime(s.endedAt) : "In progress"}</span>
+                        <span>
+                          {s.endedAt
+                            ? formatDateTime(s.endedAt)
+                            : "In progress"}
+                        </span>
                       </div>
                       <BreakList breaks={s.breaks} />
                       <div className="msd-session-actions">
-                        <button className="msd-btn edit" onClick={() => handleEditOpen(s)}>Edit</button>
-                        <button className="msd-btn delete" onClick={() => handleDelete(s.id)}>Delete</button>
+                        <button
+                          className="msd-btn edit"
+                          onClick={() => handleEditOpen(s)}
+                        >
+                          Edit
+                        </button>
+                        <button
+                          className="msd-btn delete"
+                          onClick={() => handleDelete(s.id)}
+                        >
+                          Delete
+                        </button>
                       </div>
                     </div>
                   )}
@@ -256,7 +362,9 @@ export default function MySessionsDrawer({ isOpen, onClose }: MySessionsDrawerPr
           ))}
 
           {loading && <p className="msd-loading">Loading...</p>}
-          {!hasMore && sessions.length > 0 && <p className="msd-end">All sessions loaded.</p>}
+          {!hasMore && sessions.length > 0 && (
+            <p className="msd-end">All sessions loaded.</p>
+          )}
           <div ref={sentinelRef} style={{ height: 1 }} />
         </div>
       </div>

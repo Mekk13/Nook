@@ -77,8 +77,4 @@ public class MembershipController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/members")
-    public ResponseEntity<List<MembershipResponse>> getRoomMembers(@PathVariable String roomId) {
-        return ResponseEntity.ok(membershipService.getRoomMembers(roomId));
-    }
 }

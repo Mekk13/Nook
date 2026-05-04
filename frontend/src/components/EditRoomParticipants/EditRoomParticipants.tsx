@@ -37,7 +37,7 @@ const EditRoomParticipants: React.FC<EditRoomParticipantsProps> = ({ isOpen, onC
   const listRef = useRef<HTMLDivElement>(null);
   const fetchPage = useCallback(async (pageNum: number) => {
   const res = await fetch(
-    `http://localhost:8080/api/sessions/room/${selectedRoomId}?page=${pageNum}&size=${PAGE_SIZE}`,
+    `${import.meta.env.VITE_API_URL}/api/sessions/room/${selectedRoomId}?page=${pageNum}&size=${PAGE_SIZE}`,
     { headers: { Authorization: `Bearer ${token}` } }
   );
   const data = await res.json();
@@ -84,7 +84,7 @@ const EditRoomParticipants: React.FC<EditRoomParticipantsProps> = ({ isOpen, onC
 
   try {
     const res = await fetch(
-      `http://localhost:8080/api/sessions/room/${selectedRoomId}?page=${pageRef.current}&size=${PAGE_SIZE}`,
+      `${import.meta.env.VITE_API_URL}/api/sessions/room/${selectedRoomId}?page=${pageRef.current}&size=${PAGE_SIZE}`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
     const data = await res.json();

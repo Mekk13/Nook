@@ -13,10 +13,10 @@ interface QueuedOperation {
   payload: any;
 }
 
-const API_URL = "http://localhost:8080/api/rooms";
-const SESSIONS_URL = "http://localhost:8080/api/sessions";
-const FAKER_URL = "http://localhost:8080/api/faker";
-const WS_URL = "http://localhost:8080/ws";
+const API_URL = `${import.meta.env.VITE_API_URL}/api/rooms`;
+const SESSIONS_URL = `${import.meta.env.VITE_API_URL}/api/sessions`;
+const FAKER_URL = `${import.meta.env.VITE_API_URL}/api/faker`;
+const WS_URL = `${import.meta.env.VITE_API_URL}/ws`;
 
 function getToken() {
   return useAuthStore.getState().token;

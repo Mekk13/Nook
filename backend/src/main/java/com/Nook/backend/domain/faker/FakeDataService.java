@@ -82,6 +82,9 @@ public class FakeDataService {
                         .id(UUID.randomUUID().toString())
                         .fullName(faker.name().fullName())
                         .username(faker.internet().username())
+                        .email(faker.internet().emailAddress())
+                        .passwordHash("fake-hash")
+                        .createdAt(LocalDateTime.now())
                         .build();
                 userRepository.save(user);
 

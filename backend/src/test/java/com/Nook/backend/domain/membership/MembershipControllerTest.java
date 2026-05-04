@@ -42,18 +42,6 @@ class MembershipControllerTest {
     }
 
     @Test
-    void getRoomMembers_returns200() {
-        when(membershipService.getRoomMembers("room-1"))
-                .thenReturn(List.of(sampleMembership()));
-
-        ResponseEntity<List<MembershipResponse>> response =
-                membershipController.getRoomMembers("room-1");
-
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(response.getBody()).hasSize(1);
-    }
-
-    @Test
     void getMyMembership_returns200() {
         when(membershipService.getMembership("user-1","room-1"))
                 .thenReturn(sampleMembership());

@@ -10,7 +10,7 @@ export const useNetworkStore = create<NetworkStore>((set) => ({
   setOnline: (status) => set({ isOnline: status }),
 }));
 
-const PING_URL = 'http://localhost:8080/api/rooms?page=0&size=1';
+const PING_URL = `${import.meta.env.VITE_API_URL}/api/rooms?page=0&size=1`;
 const PING_INTERVAL = 1000;
 
 async function checkServerReachable(): Promise<boolean> {

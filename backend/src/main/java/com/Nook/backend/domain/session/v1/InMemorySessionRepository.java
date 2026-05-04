@@ -56,4 +56,18 @@ public class InMemorySessionRepository implements IStudySessionRepository {
     public void delete(String id) {
         store.remove(id);
     }
+
+    @Override
+    public List<StudySession> findByUserIdAndSubjectContainingIgnoreCase(String userId, String subject) {
+        return store.values().stream()
+                .filter(s -> s.getUserId().equals(userId) &&
+                        s.getSubject() != null &&
+                        s.getSubject().toLowerCase().contains(subject.toLowerCase()))
+                .toList();
+    }
+
+    @Override
+    public List<String> findDistinctSubjectsByUserId(String userId) {
+        throw new UnsupportedOperationException("Not supported in v1");
+    }
 }

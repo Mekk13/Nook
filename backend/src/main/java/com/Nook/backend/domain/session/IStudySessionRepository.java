@@ -15,4 +15,7 @@ public interface IStudySessionRepository {
 
     void update(StudySession session);
     void delete(String id);
+
+    List<StudySession> findByUserIdAndSubjectContainingIgnoreCase(String userId, String subject);
+    List<String> findDistinctSubjectsByUserId(String userId);
 }
