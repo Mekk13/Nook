@@ -1,0 +1,11 @@
+.offline-banner {
+  width: 100%;
+  background: #f59e0b;
+  color: white;
+  text-align: center;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  flex-shrink: 0;
+  z-index: 50;
+}

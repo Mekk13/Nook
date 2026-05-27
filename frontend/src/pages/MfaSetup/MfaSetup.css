@@ -1,0 +1,235 @@
+.mfa-setup-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 16px 80px;
+  background: var(--bg, #0e1117);
+}
+
+.mfa-setup-container {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.mfa-back-btn {
+  background: none;
+  border: none;
+  color: #a0a8c0;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0;
+  text-align: left;
+  transition: color 0.2s;
+}
+.mfa-back-btn:hover {
+  color: #fff;
+}
+
+.mfa-setup-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+/* ── Card ───────────────────────────────────────── */
+.mfa-card {
+  background: #181c27;
+  border: 1px solid #2a2f3f;
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mfa-card--center {
+  align-items: center;
+  text-align: center;
+}
+
+/* ── Step badge ─────────────────────────────────── */
+.mfa-step-badge {
+  display: inline-block;
+  background: #252b3b;
+  color: #a0a8c0;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 99px;
+  align-self: flex-start;
+}
+
+.mfa-section-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+  margin: 0;
+}
+
+.mfa-hint {
+  font-size: 14px;
+  color: #a0a8c0;
+  margin: 0;
+  line-height: 1.6;
+}
+.mfa-hint--small {
+  font-size: 12px;
+}
+
+/* ── QR code ────────────────────────────────────── */
+.mfa-qr-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+  background: #fff;
+  border-radius: 12px;
+  width: fit-content;
+  align-self: center;
+}
+
+.mfa-qr-image {
+  width: 180px;
+  height: 180px;
+  display: block;
+}
+
+.mfa-qr-placeholder {
+  width: 180px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Manual secret ──────────────────────────────── */
+.mfa-secret-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mfa-secret {
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  color: #c8d0e8;
+  background: #252b3b;
+  border: 1px solid #2a2f3f;
+  border-radius: 8px;
+  padding: 10px 14px;
+  word-break: break-all;
+  user-select: all;
+}
+
+/* ── Code input ─────────────────────────────────── */
+.mfa-code-input-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.mfa-code-input {
+  width: 100%;
+  max-width: 220px;
+  text-align: center;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  padding: 14px 16px;
+  background: #252b3b;
+  border: 1px solid #3a4055;
+  border-radius: 12px;
+  color: #fff;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.mfa-code-input:focus {
+  border-color: #6b7aff;
+}
+.mfa-code-input::placeholder {
+  color: #3a4055;
+  letter-spacing: 0.15em;
+}
+
+/* ── Buttons ────────────────────────────────────── */
+.mfa-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.mfa-btn {
+  flex: 1;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.2s, transform 0.1s;
+}
+.mfa-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.mfa-btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.mfa-btn--primary {
+  background: #6b7aff;
+  color: #fff;
+}
+.mfa-btn--primary:hover:not(:disabled) {
+  background: #7b8aff;
+}
+
+.mfa-btn--secondary {
+  background: #252b3b;
+  color: #a0a8c0;
+}
+.mfa-btn--secondary:hover:not(:disabled) {
+  background: #2f374d;
+  color: #fff;
+}
+
+/* ── Success ────────────────────────────────────── */
+.mfa-success-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #1a3a2a;
+  border: 2px solid #2ecc71;
+  color: #2ecc71;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Error message ──────────────────────────────── */
+.mfa-error {
+  color: #ff6b6b;
+  font-size: 13px;
+  margin: 0;
+  text-align: center;
+}
+
+/* ── Spinner ────────────────────────────────────── */
+.mfa-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #2a2f3f;
+  border-top-color: #6b7aff;
+  border-radius: 50%;
+  animation: mfa-spin 0.7s linear infinite;
+}
+
+@keyframes mfa-spin {
+  to { transform: rotate(360deg); }
+}

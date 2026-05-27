@@ -1,0 +1,15 @@
+package com.Nook.backend.domain.user.v2;
+
+import com.Nook.backend.domain.user.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Optional;
+
+public interface JpaUserRepository extends JpaRepository<User, String> {
+    Optional<User> findByEmailIgnoreCase(String email);
+    Optional<User> findByUsernameIgnoreCase(String username);
+    boolean existsByEmailIgnoreCase(String email);
+    boolean existsByUsernameIgnoreCase(String username);
+    Optional<User> findByResetToken(String resetToken);
+    Optional<User> findByMagicLinkToken(String token);
+}

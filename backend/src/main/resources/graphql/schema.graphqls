@@ -1,0 +1,104 @@
+type Query {
+    # Rooms
+    myRooms(page: Int, size: Int): RoomPage
+    publicRooms(page: Int, size: Int): RoomPage
+    room(id: String!): RoomResponse
+
+    # Sessions
+    mySessions(page: Int, size: Int): SessionPage
+    roomSessions(roomId: String!, page: Int, size: Int): SessionPage
+    session(id: String!): SessionResponse
+    myStats: SessionStatsResponse
+
+    # Members
+    roomMembers(roomId: String!): [MembershipResponse]
+}
+
+type Mutation {
+    # Rooms
+    createRoom(name: String!, description: String, maxParticipants: Int, isPrivate: Boolean): RoomResponse
+    updateRoom(id: String!, name: String, description: String, maxParticipants: Int, isPrivate: Boolean): RoomResponse
+    deleteRoom(id: String!): Boolean
+    joinRoomByCode(code: String!): RoomResponse
+
+    # Sessions
+    startSession(roomId: String!): SessionResponse
+    endSession(id: String!, name: String!, subject: String!): SessionResponse
+    startBreak(id: String!): SessionResponse
+    endBreak(id: String!): SessionResponse
+    deleteSession(id: String!): Boolean
+}
+
+type RoomPage {
+    content: [RoomResponse]
+    totalPages: Int
+    totalElements: Int
+}
+
+type SessionPage {
+    content: [SessionResponse]
+    totalPages: Int
+    totalElements: Int
+}
+
+type RoomResponse {
+    id: String
+    name: String
+    description: String
+    roomCode: String
+    maxParticipants: Int
+    isPrivate: Boolean
+    creatorName: String
+    createdAt: String
+    memberCount: Int
+    participants: [MemberResponse]
+}
+
+type SessionResponse {
+    id: String
+    userId: String
+    roomId: String
+    name: String
+    subject: String
+    startedAt: String
+    endedAt: String
+    inProgress: Boolean
+    durationHours: Float
+    breaks: [BreakResponse]
+}
+
+type BreakResponse {
+    id: String
+    sessionId: String
+    startedAt: String
+    endedAt: String
+    inProgress: Boolean
+}
+
+type MemberResponse {
+    userId: String
+    username: String
+    avatar: String
+    role: String
+    status: String
+}
+
+type MembershipResponse {
+    id: String
+    userId: String
+    roomId: String
+    role: String
+    status: String
+    joinedAt: String
+}
+
+type SessionStatsResponse {
+    totalMinutes: Int
+    todayMinutes: Int
+    weekMinutes: Int
+    monthMinutes: Int
+    totalSessions: Int
+    todaySessions: Int
+    weekSessions: Int
+    monthSessions: Int
+}

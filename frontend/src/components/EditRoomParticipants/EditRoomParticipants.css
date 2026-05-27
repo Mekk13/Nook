@@ -1,0 +1,132 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(142, 157, 204, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  font-family: 'Baloo';
+}
+
+.modal-card {
+  background-color: #FAF9F0;
+  width: 95%; /* Slightly wider to accommodate 5 columns */
+  max-width: 800px; 
+  border-radius: 40px;
+  padding: 40px;
+  position: relative;
+  border: 3px solid #8E9DCC;
+  box-shadow: 0 10px 0px rgba(0,0,0,0.1);
+}
+
+.close-x {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  background: none;
+  border: none;
+  font-size: 30px;
+  color: #8E9DCC;
+  cursor: pointer;
+}
+
+.modal-title {
+  color: #5b6394;
+  text-align: center;
+  margin-top: -20px;
+  margin-bottom: 20px;
+}
+
+.s-table-header, .s-row {
+  display: grid;
+  /* Balanced for 6 columns */
+  grid-template-columns: 1fr 1fr 1.2fr 0.7fr 0.7fr 0.5fr; 
+  gap: 10px;
+  align-items: center;
+}
+
+.s-table-header {
+  color: #5b6394;
+  padding: 0 20px 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Ensuring the text doesn't clash or wrap weirdly */
+.s-cell {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.s-cell.total {
+  font-weight: bold;
+  color: #5b6394;
+  text-align: center;
+}
+
+.s-row {
+  background: white;
+  border: 2px solid #8E9DCC;
+  border-radius: 20px;
+  padding: 15px 20px;
+  margin-bottom: 12px;
+  color: #8E9DCC;
+  box-shadow: 0 4px 0px rgba(142, 157, 204, 0.2);
+}
+
+.s-list {
+  max-height: 400px;    
+  overflow-y: auto;     
+  overflow-x: hidden;  
+  padding-right: 10px;  
+}
+
+/* Scrollbar styling */
+.s-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.s-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.s-list::-webkit-scrollbar-thumb {
+  background: #8E9DCC;
+  border-radius: 10px;
+}
+
+.done-btn {
+  background-color: #DBF4A7;
+  border: 2px solid #799B32;
+  border-radius: 15px;
+  padding: 8px 25px;
+  cursor: pointer;
+  font-family: 'Baloo';
+  margin-top: 10px;
+  font-size: 18px;
+  color: #333;
+  transition: transform 0.1s;
+}
+
+.done-btn:active {
+  transform: scale(0.95);
+}
+
+.no-data {
+  color: #F98D8D;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.s-cell.time {
+  font-size: 13px;
+  font-weight: 400; /* Less bold */
+  color: #8E9DCC;
+  text-align: left;
+}

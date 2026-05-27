@@ -1,0 +1,188 @@
+.settings-page {
+  width: 100%;
+  min-height: calc(100vh - 80px);
+  background: linear-gradient(160deg, #b8c5e8 0%, #c9a8d4 50%, #c9a0d0 100%);
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+.settings-container {
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.settings-title {
+  font-size: 32px;
+  color: white;
+  font-weight: 600;
+  margin: 0 0 8px;
+  text-shadow: 2px 2px 0 rgba(100, 117, 166, 0.3);
+}
+
+.settings-message {
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.settings-message.ok {
+  background-color: #dbf4a7;
+  color: #5a7a20;
+}
+
+.settings-message.err {
+  background-color: #fce8e8;
+  color: #c07070;
+}
+
+.settings-card {
+  background-color: #f5f3e4;
+  border-radius: 20px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+}
+
+.settings-card--danger {
+  background-color: #fff5f5;
+}
+
+.settings-section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #7a86b6;
+  margin: 0;
+}
+
+.settings-section-title.danger {
+  color: #c07070;
+}
+
+.settings-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.settings-field label {
+  font-size: 14px;
+  color: #8e9dcc;
+  font-weight: 600;
+}
+
+.settings-field input,
+.settings-field textarea {
+  border: 2px solid #8e9dcc;
+  border-radius: 40px;
+  padding: 10px 18px;
+  font-size: 15px;
+  background-color: white;
+  font-family: "Baloo", cursive;
+  box-shadow: inset 2px 4px 6px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.settings-field textarea {
+  border-radius: 16px;
+  resize: vertical;
+}
+
+.settings-field input:focus,
+.settings-field textarea:focus {
+  outline: none;
+  border-color: #6475a6;
+}
+
+.avatar-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.avatar-option {
+  padding: 8px 14px;
+  border-radius: 40px;
+  border: 2px solid #8e9dcc;
+  background: white;
+  font-family: "Baloo", cursive;
+  font-size: 13px;
+  color: #6475a6;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-weight: 600;
+}
+
+.avatar-option:hover {
+  background-color: #e8e4f8;
+}
+
+.avatar-option.selected {
+  background-color: #8e9dcc;
+  color: white;
+  border-color: #6475a6;
+}
+
+.settings-btn {
+  padding: 10px 24px;
+  border-radius: 40px;
+  border: none;
+  font-family: "Baloo", cursive;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+  align-self: flex-start;
+}
+
+.settings-btn:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.settings-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.settings-btn--primary {
+  background-color: #8e9dcc;
+  color: white;
+}
+
+.settings-btn--secondary {
+  background-color: #e8e4d8;
+  color: #6475a6;
+}
+
+.settings-btn--danger {
+  background-color: #e8a0a0;
+  color: white;
+}
+
+.settings-danger-text {
+  font-size: 14px;
+  color: #a07070;
+  margin: 0;
+}
+
+.settings-delete-confirm p {
+  font-size: 14px;
+  color: #c07070;
+  font-weight: 600;
+  margin: 0;
+}
+
+.settings-delete-actions {
+  display: flex;
+  gap: 12px;
+}
