@@ -10,20 +10,23 @@ import java.util.List;
 
 @Configuration
 public class WebConfig {
-
     @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:5173", "http://127.0.0.1:5173"));
-        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "PATCH"));
+
+        // This allows BOTH localhost and your Network IP
+        config.setAllowedOriginPatterns(List.of(
+                "http://localhost:5173",
+                "https://localhost:5173",
+                "https://192.168.50.153:5173"
+        ));
+
+        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
-        config.setAllowedOriginPatterns(List.of("*"));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/api/**", config);
-        source.registerCorsConfiguration("/ws/**", config);
-
+        source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }
 }

@@ -1,5 +1,5 @@
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 interface AuthState {
   token: string | null;
@@ -8,8 +8,10 @@ interface AuthState {
     username: string;
     fullName: string;
     avatar: string;
+    role: string;
+    mfaEnabled: boolean;
   } | null;
-  setAuth: (data: any) => void; 
+  setAuth: (data: any) => void;
   logout: () => void;
   isAuthenticated: () => boolean;
 }
@@ -19,18 +21,21 @@ export const useAuthStore = create<AuthState>()(
     (set, get) => ({
       token: null,
       user: null,
-      setAuth: (data) => set({ 
-        token: data.token, 
-        user: { 
-          userId: data.userId, 
-          username: data.username, 
-          fullName: data.fullName, 
-          avatar: data.avatar 
-        } 
-      }),
+      setAuth: (data) =>
+        set({
+          token: data.token,
+          user: {
+            userId: data.userId,
+            username: data.username,
+            fullName: data.fullName,
+            avatar: data.avatar,
+            role: data.role ?? "USER",
+            mfaEnabled: data.mfaEnabled ?? false, 
+          },
+        }),
       logout: () => set({ token: null, user: null }),
       isAuthenticated: () => !!get().token,
     }),
-    { name: 'nook-auth' } 
-  )
+    { name: "nook-auth" },
+  ),
 );

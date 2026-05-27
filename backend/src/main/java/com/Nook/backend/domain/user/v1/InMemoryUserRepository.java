@@ -66,4 +66,18 @@ public class InMemoryUserRepository implements IUserRepository {
         return store.values().stream()
                 .anyMatch(u -> u.getUsername().equalsIgnoreCase(username));
     }
+
+    @Override
+    public Optional<User> findByResetToken(String token) {
+        if (token == null) return Optional.empty();
+
+        return store.values().stream()
+                .filter(u -> token.equals(u.getResetToken()))
+                .findFirst();
+    }
+
+    @Override
+    public Optional<User> findByMagicLinkToken(String token) {
+        return Optional.empty();
+    }
 }

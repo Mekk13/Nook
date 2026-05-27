@@ -6,12 +6,13 @@ import Stats from "../../assets/Stats.svg";
 import Exit from "../../assets/Exit.svg";
 import { useEffect, useRef, useState } from "react";
 import { useRoomStore } from "../../stores/roomStore";
-import { useNavigation } from "../../services/NavigationContext";
 import { useAuthStore } from "../../stores/useAuthStore";
 import type { Member } from "../../types/room";
 import EndSessionModal from "../../components/EndSession/EndSessionModal";
 import RoomStatistics from "../../components/RoomStatistics/RoomStatistics";
 import MySessionsDrawer from "../../components/MySessionsDrawer/MySessionsDrawer";
+import { useNavigate } from "react-router-dom";
+import ChatDrawer from "../../components/ChatDrawer/ChatDrawer";
 
 type SessionState = "idle" | "studying" | "paused";
 
@@ -26,7 +27,7 @@ function formatTime(seconds: number) {
 
 function Lobby() {
   const { selectedRoomId } = useRoomStore();
-  const { navigateTo } = useNavigation();
+  const navigate = useNavigate();
   const token = useAuthStore.getState().token;
   const currentUserId = useAuthStore.getState().user?.userId;
 
@@ -46,6 +47,7 @@ function Lobby() {
   const activeSession = useRoomStore((state) => state.activeSession);
   const setActiveSession = useRoomStore((state) => state.setActiveSession);
 
+  const [showChat, setShowChat] = useState(false);
   // Rehydrate session state from store on mount
   useEffect(() => {
     if (!activeSession) return;
@@ -189,9 +191,14 @@ function Lobby() {
           <span>Stats</span>
         </button>
 
-        <button className="lobby-control-item" onClick={() => navigateTo("home")}>
+        <button className="lobby-control-item" onClick={() => navigate("/home")}>
           <div className="icon-circle"><img src={Exit} alt="Leave" /></div>
           <span>Leave</span>
+        </button>
+
+        <button className="lobby-control-item" onClick={() => setShowChat(true)}>
+          <div className="icon-circle"><img src={Book} alt="Chat" /></div>
+          <span>Chat</span>
         </button>
       </div>
 
@@ -210,6 +217,12 @@ function Lobby() {
       <MySessionsDrawer
         isOpen={showMySessions}
         onClose={() => setShowMySessions(false)}
+      />
+
+      <ChatDrawer
+        isOpen={showChat}
+        onClose={() => setShowChat(false)}
+        roomId={selectedRoomId ?? ""}
       />
     </div>
   );

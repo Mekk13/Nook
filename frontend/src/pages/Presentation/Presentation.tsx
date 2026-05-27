@@ -1,17 +1,19 @@
 import "./Presentation.css";
 import logo from "../../assets/logo.svg";
 import deco1 from "../../assets/Decoration1.svg";
-import { useNavigation } from "../../services/NavigationContext";
 import { useAuthStore } from "../../stores/useAuthStore";
+import { useNavigate } from "react-router-dom";
+
+
 function Presentation() {
-  const { navigateTo } = useNavigation(); 
+  const navigate = useNavigate(); 
   const { isAuthenticated } = useAuthStore();
 
   const handleStart = () => {
   if (isAuthenticated()) {
-    navigateTo("home");
+    navigate("/home");
   } else {
-    navigateTo("login"); 
+    navigate("/login"); 
   }
 };
 

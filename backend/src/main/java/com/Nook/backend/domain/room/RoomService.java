@@ -1,5 +1,6 @@
 package com.Nook.backend.domain.room;
 
+import com.Nook.backend.domain.log.LoggingService;
 import com.Nook.backend.domain.membership.*;
 import com.Nook.backend.domain.membership.dto.MemberResponse;
 import com.Nook.backend.domain.room.dto.*;
@@ -19,6 +20,7 @@ public class RoomService {
     private final IRoomRepository roomRepository;
     private final IMembershipRepository membershipRepository;
     private final IUserRepository userRepository;
+    private final LoggingService loggingService;
 
     private List<MemberResponse> resolveParticipants(String roomId) {
         return membershipRepository.findByRoomId(roomId).stream()
@@ -82,8 +84,8 @@ public class RoomService {
                 .joinedAt(LocalDateTime.now())
                 .build();
         membershipRepository.save(membership);
-
-        return RoomResponse.from(room, 1, resolveCreatorName(userId),resolveParticipants(room.getId()));
+        loggingService.log(userId, "CREATE_ROOM");
+        return RoomResponse.from(room, 1, resolveCreatorName(userId), resolveParticipants(room.getId()));
     }
 
     public RoomResponse updateRoom(String userId, String roomId, UpdateRoomRequest request) {

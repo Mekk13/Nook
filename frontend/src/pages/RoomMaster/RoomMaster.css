@@ -174,4 +174,242 @@
     color: #5b6394;
     font-weight: bold;
   }
+  
+}
+
+.join-room-btn {
+  background-color: #DBF4A7;
+  border: 2px solid #799B32;
+  border-radius: 15px;
+  padding: 8px 15px;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px #818d6f;
+  font-family: 'Baloo';
+  transition: transform 0.1s;
+  position: absolute;
+  right: 130px;
+  margin-right: 20px;
+}
+
+.join-room-btn:active {
+  transform: translateY(2px);
+}
+
+/* =========================
+   MODAL OVERLAY
+========================= */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(73, 78, 120, 0.45);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  animation: fadeIn 0.2s ease;
+}
+
+/* =========================
+   MODAL CARD
+========================= */
+.modal-card {
+  width: 90%;
+  max-width: 540px;
+  background: #fdfdf8;
+  border: 3px solid #8f98d8;
+  border-radius: 36px;
+  padding: 40px 35px;
+  position: relative;
+
+  box-shadow:
+    0 12px 40px rgba(71, 74, 120, 0.25),
+    inset 0 2px 0 rgba(255,255,255,0.8);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+
+  animation: modalPop 0.25s ease;
+}
+
+/* =========================
+   TITLE
+========================= */
+.modal-title {
+  font-size: 3rem;
+  color: #5f669d;
+  margin: 0;
+  text-align: center;
+  line-height: 1;
+  letter-spacing: 1px;
+}
+
+/* =========================
+   CLOSE BUTTON
+========================= */
+.close-x {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+
+  background: transparent;
+  border: none;
+
+  color: #97a0d9;
+  font-size: 2rem;
+  font-weight: bold;
+
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.close-x:hover {
+  transform: scale(1.15) rotate(90deg);
+  color: #6971a8;
+}
+
+/* =========================
+   INPUT + BUTTON WRAPPER
+========================= */
+.join-form {
+  width: 100%;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================
+   INPUT
+========================= */
+.join-code-input {
+  flex: 1;
+  height: 62px;
+
+  border-radius: 18px;
+  border: 2px solid #c6caec;
+
+  background: white;
+
+  padding: 0 22px;
+
+  font-size: 1.15rem;
+  font-family: "Baloo";
+  color: #5b6394;
+
+  outline: none;
+
+  transition: all 0.2s ease;
+}
+
+.join-code-input::placeholder {
+  color: #b2b6d8;
+}
+
+.join-code-input:focus {
+  border-color: #8ea847;
+  box-shadow: 0 0 0 5px rgba(189, 221, 116, 0.25);
+  transform: translateY(-1px);
+}
+
+/* =========================
+   JOIN BUTTON
+========================= */
+.done-btn {
+  height: 62px;
+  min-width: 130px;
+
+  border: none;
+  border-radius: 20px;
+
+  background: linear-gradient(
+    180deg,
+    #dff6a8 0%,
+    #c7e97d 100%
+  );
+
+  color: #2f2f44;
+  font-size: 1.3rem;
+  font-family: "Baloo";
+  font-weight: bold;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 6px 0 #89a645,
+    0 10px 18px rgba(137, 166, 69, 0.25);
+
+  transition: all 0.15s ease;
+}
+
+.done-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.03);
+}
+
+.done-btn:active {
+  transform: translateY(4px);
+  box-shadow:
+    0 2px 0 #89a645,
+    0 4px 10px rgba(137, 166, 69, 0.2);
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+@keyframes modalPop {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 640px) {
+  .modal-card {
+    padding: 30px 20px;
+    border-radius: 28px;
+  }
+
+  .modal-title {
+    font-size: 2.2rem;
+  }
+
+  .join-form {
+    flex-direction: column;
+  }
+
+  .join-code-input,
+  .done-btn {
+    width: 100%;
+  }
+
+  .done-btn {
+    min-width: unset;
+  }
+}
+.join-error {
+  color: #c0392b;
+  font-size: 0.9rem;
+  margin: 8px 0 0;
+  text-align: center;
 }

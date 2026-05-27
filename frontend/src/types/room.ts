@@ -39,6 +39,7 @@ export interface Room {
     status: 'Public' | 'Private';
     createdAt: string;
     memberCount: number;
+    roomCode?: string;
 }
 
 export interface Member {

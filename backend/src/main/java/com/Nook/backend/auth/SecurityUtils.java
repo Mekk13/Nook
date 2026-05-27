@@ -20,4 +20,15 @@ public class SecurityUtils {
         // In JwtFilter we set the username to the userId — so getName() gives us the userId
         return authentication.getName();
     }
+
+    public static String getCurrentUserRole() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !authentication.isAuthenticated()) {
+            throw new UnauthorizedException("Not authenticated");
+        }
+        return authentication.getAuthorities().stream()
+                .findFirst()
+                .map(a -> a.getAuthority().replace("ROLE_", ""))
+                .orElse("USER");
+    }
 }

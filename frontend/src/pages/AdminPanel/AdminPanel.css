@@ -1,0 +1,71 @@
+.admin-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 40px;
+  background-image: url("../../assets/BG.jpg");
+  background-size: cover;
+  font-family: 'Baloo', sans-serif;
+}
+
+.admin-card {
+  width: 95%;
+  max-width: 900px;
+  background-color: #D9DBF1;
+  border: 2px solid #6971A8;
+  border-radius: 40px;
+  padding: 40px;
+}
+
+.admin-title {
+  color: #5b6394;
+  font-size: 2.5rem;
+  text-align: center;
+  margin: 0 0 8px;
+}
+
+.admin-subtitle {
+  color: #8E9DCC;
+  font-size: 1.2rem;
+  text-align: center;
+  margin: 0 0 30px;
+}
+
+.admin-empty {
+  text-align: center;
+  color: #8E9DCC;
+  font-style: italic;
+}
+
+.watchlist-header {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr auto;
+  padding: 10px 20px;
+  color: #5b6394;
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+.watchlist-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr auto;
+  background: #FAF9F0;
+  border: 2px solid #8E9DCC;
+  border-radius: 15px;
+  padding: 12px 20px;
+  margin-bottom: 10px;
+  color: #8E9DCC;
+  align-items: center;
+}
+
+.remove-btn {
+  background: #fde8e8;
+  border: 2px solid #f98d8d;
+  border-radius: 10px;
+  padding: 5px 12px;
+  color: #c0392b;
+  font-family: 'Baloo', sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+}

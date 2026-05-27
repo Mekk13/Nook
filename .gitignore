@@ -1,31 +1,47 @@
-# --- Frontend (nook-frontend) ---
-nook-frontend/node_modules/
-nook-frontend/dist/
-nook-frontend/test-results/
-nook-frontend/playwright-report/
-nook-frontend/.cache/
-nook-frontend/vite.config.*.timestamp-*
-nook-frontend/*.tsbuildinfo
-nook-frontend/.eslintcache
-
-# --- Backend (nook-backend) ---
-nook-backend/target/
-nook-backend/bin/
-nook-backend/*.log
-nook-backend/.mvn/wrapper/maven-wrapper.jar
-nook-backend/.metadata/
-nook-backend/.classpath
-nook-backend/.project
-nook-backend/.settings/
-nook-backend/help.md
-
-# --- Common/OS Files ---
-.DS_Store
-Thumbs.db
+# --- Secrets (NEVER commit) ---
+backend/application-local.properties
+backend/application-secrets.properties
 .env
 .env.*
 !.env.example
+
+# --- Certs ---
+# nook.p12 is intentionally tracked so the project boots out of the box,
+# but if you regenerate with real prod certs, gitignore them here.
+backend/src/main/resources/*-prod.p12
+
+# --- Frontend ---
+frontend/node_modules/
+frontend/dist/
+frontend/test-results/
+frontend/playwright-report/
+frontend/.cache/
+frontend/vite.config.*.timestamp-*
+frontend/*.tsbuildinfo
+frontend/.eslintcache
+frontend/coverage/
+
+# --- Backend ---
+backend/target/
+backend/bin/
+backend/*.log
+backend/.mvn/wrapper/maven-wrapper.jar
+backend/.metadata/
+backend/.classpath
+backend/.project
+backend/.settings/
+backend/help.md
+backend/HELP.md
+
+# --- OS / IDE ---
+.DS_Store
+Thumbs.db
 .vscode/
 .idea/
+*.iml
 *.swp
 *.bak
+
+# --- Postman ---
+.postman/
+postman/

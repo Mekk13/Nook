@@ -1,11 +1,11 @@
 import "./RoomCreate.css";
-import { useNavigation } from "../../services/NavigationContext";
 import { useRoomCreate } from "../../hooks/useRoomCreate";
 import SuccessWindow from "../../components/SuccessWindow/SuccessWindow";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function RoomCreate() {
-  const { navigateTo } = useNavigation();
+  const navigate = useNavigate();
   const { maxParticipants, increment, decrement, submit, errors } = useRoomCreate();
 
   const [name, setName] = useState("");
@@ -25,7 +25,7 @@ function RoomCreate() {
       <div className="create-room-container">
         <div className="create-card">
           <div className="create-header">
-            <button className="nav-btn cancel" onClick={() => navigateTo("rooms")}>
+            <button className="nav-btn cancel" onClick={() => navigate("/rooms")}>
               Cancel
             </button>
             <h1 className="create-title">CREATE ROOM</h1>
@@ -90,7 +90,7 @@ function RoomCreate() {
 
       <SuccessWindow
         isOpen={showSuccess}
-        onClose={() => navigateTo("rooms")} 
+        onClose={() => navigate("/rooms")} 
         message="Your cozy study lounge is ready!"
       />
     </div>

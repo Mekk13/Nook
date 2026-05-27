@@ -16,7 +16,7 @@ interface QueuedOperation {
 const API_URL = `${import.meta.env.VITE_API_URL}/api/rooms`;
 const SESSIONS_URL = `${import.meta.env.VITE_API_URL}/api/sessions`;
 const FAKER_URL = `${import.meta.env.VITE_API_URL}/api/faker`;
-const WS_URL = `${import.meta.env.VITE_API_URL}/ws`;
+const WS_URL = import.meta.env.VITE_API_URL.replace(/^http/, "ws") + "/ws";
 
 function getToken() {
   return useAuthStore.getState().token;
@@ -38,6 +38,7 @@ interface RoomStore {
   offlineQueue: QueuedOperation[];
   fakerRunning: boolean;
   stompClient: Client | null;
+  joinByCode: (code: string) => Promise<string | null>;
 
   setSelectedRoom: (id: string) => void;
   getAll: () => Room[];
@@ -250,6 +251,24 @@ export const useRoomStore = create<RoomStore>()(
               { id: tempId, type: "add", payload: room },
             ],
           }));
+        }
+      },
+
+      joinByCode: async (code) => {
+        const token = getToken();
+        try {
+          const res = await fetch(`${API_URL}/join/${code}`, {
+            method: "POST",
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          if (!res.ok) {
+            const err = await res.json();
+            return err.message ?? "Failed to join room";
+          }
+          get().fetchRooms(0, 5);
+          return null;
+        } catch {
+          return "Failed to join room";
         }
       },
 
@@ -571,6 +590,8 @@ export const useRoomStore = create<RoomStore>()(
         const client = new Client({
           webSocketFactory: () => new SockJS(WS_URL),
           reconnectDelay: 5000,
+          heartbeatIncoming: 4000,
+          heartbeatOutgoing: 4000,
           onConnect: () => {
             console.log("WS connected for room:", roomId);
             client.subscribe(`/topic/room/${roomId}`, async (message) => {
@@ -579,12 +600,15 @@ export const useRoomStore = create<RoomStore>()(
               if (event.type === "SESSION_BATCH_CREATED") {
                 await get().fetchRooms(0, 5);
                 await get().fetchRoomSessions(roomId);
-                // Also notify the modal if it's open
                 window.dispatchEvent(
                   new CustomEvent("sessions-updated", { detail: { roomId } }),
                 );
               }
             });
+          },
+          onStompError: (frame) => {
+            console.error("Broker reported error: " + frame.headers["message"]);
+            console.error("Additional details: " + frame.body);
           },
         });
 

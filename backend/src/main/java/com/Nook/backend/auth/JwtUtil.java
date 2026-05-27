@@ -29,13 +29,18 @@ public class JwtUtil {
 
     // Creates a new JWT token for a given userId
     // This runs after a successful login or registration
-    public String generateToken(String userId) {
+    public String generateToken(String userId, String role) {
         return Jwts.builder()
-                .subject(userId)                          // "sub" claim — who this token is for
-                .issuedAt(new Date())                     // "iat" — when it was created
-                .expiration(new Date(System.currentTimeMillis() + expirationMs)) // "exp"
-                .signWith(getSigningKey())                // sign with our secret key
-                .compact();                               // build the final string
+                .subject(userId)
+                .claim("role", role)
+                .issuedAt(new Date())
+                .expiration(new Date(System.currentTimeMillis() + expirationMs))
+                .signWith(getSigningKey())
+                .compact();
+    }
+
+    public String extractRole(String token) {
+        return extractClaims(token).get("role", String.class);
     }
 
     // Reads the userId out of a token

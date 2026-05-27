@@ -10,4 +10,6 @@ public interface JpaUserRepository extends JpaRepository<User, String> {
     Optional<User> findByUsernameIgnoreCase(String username);
     boolean existsByEmailIgnoreCase(String email);
     boolean existsByUsernameIgnoreCase(String username);
+    Optional<User> findByResetToken(String resetToken);
+    Optional<User> findByMagicLinkToken(String token);
 }

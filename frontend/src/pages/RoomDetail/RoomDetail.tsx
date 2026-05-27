@@ -1,12 +1,12 @@
 import "./RoomDetail.css";
 import MainLayout from "../../components/MainLayout/MainLayout";
-import { useNavigation } from "../../services/NavigationContext";
 import { useRoomDetail } from "../../hooks/useRoomDetail";
 import RoomStatistics from "../../components/RoomStatistics/RoomStatistics";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function RoomDetail() {
-  const { navigateTo } = useNavigation();
+  const navigate = useNavigate();
   const { room, displayDate } = useRoomDetail();
   const [isStatsOpen, setStatsOpen] = useState(false);
 
@@ -18,7 +18,7 @@ function RoomDetail() {
             <h2 className="view-title">Room not found!</h2>
             <button
               className="nav-btn cancel"
-              onClick={() => navigateTo("rooms")}
+              onClick={() => navigate("/rooms")}
             >
               Go Back
             </button>
@@ -35,12 +35,17 @@ function RoomDetail() {
           <div className="view-header">
             <button
               className="nav-btn cancel"
-              onClick={() => navigateTo("rooms")}
+              onClick={() => navigate("/rooms")}
             >
               Back
             </button>
             <h1 className="view-title underline">{room.name}</h1>
-            <button className="nav-btn submit join" onClick={() => navigateTo("lobby")}>Join Room</button>
+            <button
+              className="nav-btn submit join"
+              onClick={() => navigate("/lobby")}
+            >
+              Join Room
+            </button>
           </div>
 
           <div className="view-content">
@@ -54,6 +59,10 @@ function RoomDetail() {
               <div className="detail-item">
                 <label>Created:</label>
                 <div className="detail-box">{displayDate}</div>
+              </div>
+              <div className="detail-item">
+                <label>Room Code:</label>
+                <div className="detail-box">{room.roomCode ?? "—"}</div>
               </div>
             </div>
 

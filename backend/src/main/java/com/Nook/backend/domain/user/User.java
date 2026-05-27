@@ -16,6 +16,11 @@ import java.time.LocalDateTime;
 @Table(name = "users")
 public class User {
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    @Builder.Default
+    private UserRole role = UserRole.USER;
+
     @Id
     @Column(nullable = false, unique = true)
     private String id;
@@ -38,4 +43,41 @@ public class User {
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
+
+    @Column
+    private String description;
+
+    // ── Password reset ────────────────────────────────────────────────────────
+    @Column(name = "reset_token")
+    private String resetToken;
+
+    @Column(name = "token_expiry")
+    private LocalDateTime tokenExpiry;
+
+    // ── Magic link (dedicated fields, separate from password reset) ───────────
+    @Column(name = "magic_link_token")
+    private String magicLinkToken;
+
+    @Column(name = "magic_link_expiry")
+    private LocalDateTime magicLinkExpiry;
+
+    // ── Three-factor auth ─────────────────────────────────────────────────────
+    /** Whether this user has 3FA enabled (email OTP + TOTP). */
+    @Builder.Default
+    @Column(name = "mfa_enabled", nullable = false)
+    private boolean mfaEnabled = false;
+
+    /**
+     * Base32-encoded TOTP secret (stored after the user scans the QR code
+     * and confirms their first TOTP code). Null until TOTP is set up.
+     */
+    @Column(name = "totp_secret")
+    private String totpSecret;
+
+    /** Short-lived email OTP (6 digits). Cleared after use. */
+    @Column(name = "email_otp_code")
+    private String emailOtpCode;
+
+    @Column(name = "email_otp_expiry")
+    private LocalDateTime emailOtpExpiry;
 }

@@ -1,5 +1,5 @@
 import "./RoomEdit.css";
-import { useNavigation } from "../../services/NavigationContext";
+import { useNavigate } from "react-router-dom";
 import { useRoomEdit } from "../../hooks/useRoomEdit";
 import EditRoomParticipants from "../../components/EditRoomParticipants/EditRoomParticipants";
 import { useState } from "react";
@@ -7,7 +7,7 @@ import { useRoomStore } from "../../stores/roomStore";
 import { useEffect } from "react";
 
 function RoomEdit() {
-  const { navigateTo } = useNavigation();
+  const navigate = useNavigate();
   const [isModalOpen, setModalOpen] = useState(false);
   const {
     roomToEdit,
@@ -57,7 +57,7 @@ function RoomEdit() {
 };
 
   const handleSave = () => {
-    if (save()) navigateTo("rooms");
+    if (save()) navigate("/rooms");
   };
 
   return (
@@ -67,7 +67,7 @@ function RoomEdit() {
           <div className="edit-header">
             <button
               className="nav-btn cancel"
-              onClick={() => navigateTo("rooms")}
+              onClick={() => navigate("/rooms")}
             >
               Cancel
             </button>

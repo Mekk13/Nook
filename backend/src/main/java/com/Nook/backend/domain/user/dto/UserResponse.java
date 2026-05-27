@@ -10,10 +10,10 @@ public record UserResponse(
         String username,
         String email,
         String avatar,
-        String createdAt
+        String description,
+        String createdAt,
+        boolean mfaEnabled
 ) {
-    // Static factory method — converts a User domain object to a safe response
-    // Usage: UserResponse.from(user)
     public static UserResponse from(User user) {
         return new UserResponse(
                 user.getId(),
@@ -21,7 +21,9 @@ public record UserResponse(
                 user.getUsername(),
                 user.getEmail(),
                 user.getAvatar(),
-                user.getCreatedAt() != null ? user.getCreatedAt().toString() : null
+                user.getDescription(),
+                user.getCreatedAt() != null ? user.getCreatedAt().toString() : null,
+                user.isMfaEnabled()
         );
     }
 }

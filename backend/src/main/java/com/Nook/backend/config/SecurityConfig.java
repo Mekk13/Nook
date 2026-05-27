@@ -1,7 +1,9 @@
 package com.Nook.backend.config;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -10,7 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.config.Customizer;
+import org.springframework.web.client.RestClient;
 
 @Configuration
 @EnableWebSecurity
@@ -26,51 +28,50 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .cors(Customizer.withDefaults())
-                // Disable CSRF — not needed for stateless JWT APIs
-                // CSRF is only relevant for browser session-based auth
                 .csrf(AbstractHttpConfigurer::disable)
-
-                // Stateless — Spring should never create a session
-                // Every request must carry its own JWT
-                .sessionManagement(s ->
-                        s.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                )
-
-                // Define which endpoints need a token and which don't
+                .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        // These are public — no token needed
-                        .requestMatchers("/api/auth/**").permitAll()
+                        // Public auth endpoints
+                        .requestMatchers("/api/auth/register", "/api/auth/login").permitAll()
+                        .requestMatchers("/api/auth/forgot-password", "/api/auth/reset-password").permitAll()
+                        .requestMatchers("/api/auth/magic-link", "/api/auth/magic-link/verify", "/api/auth/magic-link/request").permitAll()
+                        .requestMatchers("/api/auth/oauth/**").permitAll()
 
-                        // Public room browsing — anyone can see the list
+                        // MFA login steps 2 & 3 are public (no JWT yet — mid-login)
+                        .requestMatchers("/api/auth/mfa/verify-email-otp").permitAll()
+                        .requestMatchers("/api/auth/mfa/verify-totp").permitAll()
+
+                        // MFA setup endpoints require authentication (user must be logged in)
+                        .requestMatchers("/api/auth/mfa/setup").authenticated()
+                        .requestMatchers("/api/auth/mfa/setup/confirm").authenticated()
+
+                        // Everything else
                         .requestMatchers(HttpMethod.GET, "/api/rooms").permitAll()
-
-                        .requestMatchers("/api/faker/**").permitAll()
+                        // /ws/** stays public at the HTTP handshake layer;
+                        // STOMP CONNECT carries the JWT for actual auth.
                         .requestMatchers("/ws/**").permitAll()
-
-                        .requestMatchers("/api/auth/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/rooms").permitAll()
-                        .requestMatchers("/api/faker/**").permitAll()
-                        .requestMatchers("/ws/**").permitAll()
+                        // /graphql + /graphiql: kept open so the playground works locally.
+                        // graphiql is disabled in prod via spring.graphql.graphiql.enabled.
                         .requestMatchers("/graphql").permitAll()
                         .requestMatchers("/graphiql/**").permitAll()
-
-                        // Everything else requires a valid JWT token
+                        .requestMatchers("/api/admin/**").hasAuthority("ADMIN")
+                        // Authenticated-only:
+                        .requestMatchers("/api/faker/**").authenticated()
+                        .requestMatchers("/api/chat/**").authenticated()
                         .anyRequest().authenticated()
                 )
-
-                // Register our JWT filter BEFORE Spring's default auth filter
-                // This ensures our filter runs first and sets up the SecurityContext
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
 
-    // BCryptPasswordEncoder — the standard for hashing passwords in Spring
-    // BCrypt automatically adds a "salt" (random data) to each hash
-    // so two users with the same password get different hashes
-    // @Bean makes this available for injection anywhere in the app
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public RestClient restClient() {
+        return RestClient.create();
     }
 }

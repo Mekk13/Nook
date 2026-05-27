@@ -13,5 +13,13 @@ public record UpdateUserRequest(
         String username,
 
         @Size(max = 50, message = "Avatar name too long")
-        String avatar
+        String avatar,
+
+        @Size(max = 200, message = "Description too long")
+                String description,
+
+        String currentPassword,
+
+        @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&]).{10,}$", message = "Password too weak")
+        String newPassword
 ) {}
