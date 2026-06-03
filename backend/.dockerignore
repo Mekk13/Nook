@@ -1,0 +1,9 @@
+target/
+.idea/
+.vscode/
+*.iml
+HELP.md
+README.md
+.git/
+.gitignore
+application-local.properties
