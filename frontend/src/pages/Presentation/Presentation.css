@@ -1,5 +1,4 @@
-/* ================= DESKTOP (UNCHANGED) ================= */
-
+/* ================= DESKTOP ================= */
 .presentation {
   display: flex;
   justify-content: center;
@@ -12,47 +11,41 @@
   overflow: hidden;
   box-sizing: border-box;
 }
-
-.presentation__text{
+.presentation__text {
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
   text-align: center;
 }
-
-.presentation__title{
-  font-size: 160px;    
+.presentation__title {
+  font-size: 160px;
   color: white;
   text-shadow: 2px 2px 5px grey;
   margin-bottom: 0;
   margin-left: -80px;
 }
-
-.presentation__tagline{
+.presentation__tagline {
   color: white;
   -webkit-text-stroke: 1px #8E9DCC;
   font-size: 40px;
   margin-top: -30px;
   margin-left: -80px;
 }
-
-.presentation__descr{
+.presentation__descr {
   color: white;
   -webkit-text-stroke: 0.8px #8E9DCC;
   font-size: 25px;
-  max-width: 410px; 
+  max-width: 410px;
   text-align: center;
   margin-left: -80px;
 }
-
 .presentation__content {
   display: flex;
-  align-items: center; 
+  align-items: center;
   justify-content: center;
-  gap: 40px; 
-  z-index: 1; 
+  gap: 40px;
+  z-index: 1;
 }
-
 .presentation__button {
   padding: 0.5rem 1rem;
   border-color: #FF5000;
@@ -64,140 +57,124 @@
   height: 6vw;
   font-size: 45px;
   box-shadow: 2px 2px 5px grey;
-
   position: relative;
   margin-top: 30px;
   left: -170px;
-
-  min-width: 450px; 
+  min-width: 450px;
   min-height: 80px;
   white-space: nowrap;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 .presentation__button:hover {
-  transform: scale(1.05); 
+  transform: scale(1.05);
   background-color: #f0f0f0;
 }
-
 .circle--big {
   position: absolute;
-  width: 1362px;   
+  width: 1362px;
   height: 1362px;
   border-radius: 50%;
   background-color: #DBF4A7;
   border: 4px solid #7D84B2;
-
   top: 20%;
-  right: -12vw;  
+  right: -12vw;
   transform: translateY(-50%);
   z-index: 0;
 }
-
-.presentation__logo{
-  width: 250px;
-  height: 250px;
+.presentation__logo {
+  width: 380px;
+  height: 380px;
   position: relative;
-  left: -140px;
-  top: -210px;
+  left: -80px;
+  top: -80px;
+  flex-shrink: 0;
 }
-
-.bottom-decoration{
+.presentation__logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.bottom-decoration {
   position: absolute;
   bottom: 0px;
   left: 0px;
 }
 
-
 /* ================= TABLET ================= */
-
-@media (max-width: 1200px){
-
-  .presentation{
+@media (max-width: 1200px) {
+  .presentation {
     min-width: 100%;
     padding: 20px;
   }
-
-  .presentation__title{
+  .presentation__title {
     font-size: 120px;
   }
-
-  .presentation__tagline{
+  .presentation__tagline {
     font-size: 32px;
   }
-
-  .presentation__descr{
+  .presentation__descr {
     font-size: 20px;
   }
-
-  .presentation__button{
+  .presentation__button {
     font-size: 32px;
     min-width: 360px;
     height: 70px;
+    left: -120px;
   }
-
-  .circle--big{
+  .circle--big {
     width: 1000px;
     height: 1000px;
   }
-
+  .presentation__logo {
+    width: 300px;
+    height: 300px;
+    left: -60px;
+    top: -60px;
+  }
 }
 
-
 /* ================= MOBILE ================= */
-
-@media (max-width: 768px){
-
-  .presentation{
+@media (max-width: 768px) {
+  .presentation {
     min-width: 100%;
     min-height: 100vh;
     flex-direction: column;
     padding: 30px;
   }
-
-  /* remove desktop offsets */
   .presentation__title,
   .presentation__tagline,
-  .presentation__descr{
+  .presentation__descr {
     margin-left: 0;
   }
-
-  .presentation__title{
+  .presentation__title {
     font-size: 64px;
   }
-
-  .presentation__tagline{
+  .presentation__tagline {
     font-size: 22px;
     margin-top: 5px;
   }
-
-  .presentation__descr{
+  .presentation__descr {
     font-size: 16px;
     max-width: 90%;
   }
-
-  .presentation__button{
+  .presentation__button {
     left: 0;
     font-size: 22px;
     min-width: 260px;
     height: 60px;
   }
-
-  .presentation__logo{
+  .presentation__logo {
     display: none;
   }
-
-  .circle--big{
+  .circle--big {
     width: 600px;
     height: 600px;
     right: -200px;
     top: 10%;
   }
-
-  .bottom-decoration{
+  .bottom-decoration {
     width: 200px;
   }
-
 }

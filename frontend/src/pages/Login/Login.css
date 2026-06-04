@@ -447,6 +447,16 @@
   .circle--small {
     display: none;
   }
+
+  /* "Or create an account" overlaps the magic-link button when the card
+     is short. Take it out of absolute positioning so it flows below
+     everything normally with proper spacing. */
+  .create-account-link {
+    position: static;
+    transform: none;
+    margin-top: 16px;
+    align-self: center;
+  }
 }
 
 /* Avoid overflow when the screen is very narrow */
