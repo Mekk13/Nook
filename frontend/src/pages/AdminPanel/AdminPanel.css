@@ -69,3 +69,33 @@
   font-weight: 700;
   cursor: pointer;
 }
+
+/* ── Mobile ──────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .admin-container {
+    padding: 20px 12px;
+  }
+
+  .admin-card {
+    padding: 24px 16px;
+    border-radius: 28px;
+  }
+
+  .admin-title { font-size: 1.8rem; }
+  .admin-subtitle { font-size: 1rem; margin-bottom: 20px; }
+
+  /* Hide the table-style header on mobile; each row becomes a card */
+  .watchlist-header { display: none; }
+
+  .watchlist-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    text-align: center;
+    padding: 16px;
+  }
+
+  .remove-btn {
+    margin-top: 8px;
+    justify-self: center;
+  }
+}

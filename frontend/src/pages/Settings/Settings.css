@@ -185,4 +185,12 @@
 .settings-delete-actions {
   display: flex;
   gap: 12px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+  .settings-page { padding: 20px 12px; }
+  .settings-title { font-size: 26px; }
+  .settings-card { padding: 20px 18px; }
+  .settings-btn { align-self: stretch; text-align: center; }
 }

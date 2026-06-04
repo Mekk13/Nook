@@ -8,13 +8,15 @@
   font-family: "Baloo", cursive;
   position: relative;
   overflow: hidden;
+  padding: 24px 16px;
+  box-sizing: border-box;
 }
 
 /* ── Background decorations ─────────────────────────────────────────────── */
 .circle--small {
   position: absolute;
-  width: 600px;
-  height: 600px;
+  width: clamp(280px, 50vw, 600px);
+  height: clamp(280px, 50vw, 600px);
   border-radius: 50%;
   background-color: #dbf4a7;
   border: 4px solid white;
@@ -29,6 +31,7 @@
   bottom: 0;
   left: 0;
   z-index: 0;
+  max-width: 50vw;
 }
 
 /* ── Container ──────────────────────────────────────────────────────────── */
@@ -38,15 +41,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
 /* ── Logo ───────────────────────────────────────────────────────────────── */
 .login-logo {
   position: absolute;
-  top: -130px;
-  left: -150px;
-  width: 340px;
-  height: 320px;
+  top: clamp(-130px, -10vw, -70px);
+  left: clamp(-150px, -12vw, -80px);
+  width: clamp(180px, 30vw, 340px);
+  height: clamp(170px, 28vw, 320px);
   transform: rotate(-10deg);
   z-index: 10;
   pointer-events: none;
@@ -61,24 +65,24 @@
 /* ── Card ───────────────────────────────────────────────────────────────── */
 .login-card {
   background-color: #faf9f0;
-  padding: 70px 80px 40px 80px;
+  padding: clamp(40px, 8vw, 70px) clamp(24px, 6vw, 80px) clamp(28px, 4vw, 40px);
   border-radius: 30px;
   box-shadow: 0px 10px 0px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 450px;
-  position: relative;
-  width: 550px;
+  width: min(550px, 100%);
   min-height: 560px;
   height: auto;
+  position: relative;
+  box-sizing: border-box;
 }
 
 /* ── Headings ───────────────────────────────────────────────────────────── */
 .welcome-text {
   position: absolute;
-  top: -65px;
-  font-size: 65px;
+  top: clamp(-50px, -5vw, -65px);
+  font-size: clamp(40px, 7vw, 65px);
   color: white;
   text-shadow: 3px 3px 0px #6475a6;
   margin: 0;
@@ -86,11 +90,11 @@
 
 /* credentials step title */
 .login-title {
-  font-size: 70px;
+  font-size: clamp(42px, 8vw, 70px);
   color: white;
   -webkit-text-stroke: 2px #8e9dcc;
   margin-bottom: 30px;
-  margin-top: -60px;
+  margin-top: clamp(-40px, -5vw, -60px);
   text-shadow: 4px 4px 0px rgba(142, 157, 204, 0.3);
   text-align: center;
   width: 100%;
@@ -411,4 +415,48 @@
 
 .create-account-link:hover {
   opacity: 0.7;
+}
+
+/* ── Mobile tweaks ──────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .login-title--mfa {
+    font-size: 28px;
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .go-button,
+  .verify-button {
+    width: 72px;
+    height: 72px;
+    margin-right: -32px;
+    font-size: 20px;
+  }
+
+  .input-group label,
+  .mfa-input-group label {
+    font-size: 17px;
+  }
+
+  .oauth-btn,
+  .magic-link-btn {
+    font-size: 14px;
+  }
+
+  /* Hide the giant background circle on small screens — it looks weird half-cut */
+  .circle--small {
+    display: none;
+  }
+}
+
+/* Avoid overflow when the screen is very narrow */
+@media (max-width: 360px) {
+  .login-card {
+    padding: 32px 16px 24px;
+    min-height: 0;
+  }
+
+  .login-logo {
+    display: none;
+  }
 }

@@ -102,3 +102,47 @@
 
 .top-align { align-items: start; }
 .top-align label { margin-top: 10px; }
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+  .create-card {
+    padding: 25px 18px;
+    border-radius: 28px;
+    margin: 10px;
+    width: 100%;
+  }
+
+  .create-header {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .create-title { font-size: 1.8rem; }
+
+  .form-group {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+
+  .form-group label {
+    text-align: left;
+  }
+
+  .form-input, .form-textarea, .form-select, .step-display {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .number-stepper {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .nav-btn {
+    flex: 1;
+    text-align: center;
+  }
+}

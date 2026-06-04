@@ -1,0 +1,55 @@
+/* ===================================================================
+   Global responsive helpers
+   Loaded once in main.tsx. Affects every page.
+   =================================================================== */
+
+/* Prevent any element from blowing past the viewport width.
+   This single rule kills 90% of mobile horizontal-scroll issues. */
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Universal box-sizing so px paddings don't push widths past 100%. */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Images, video, svg should never overflow their parent. */
+img, video, svg, canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Make all buttons and inputs reset their min-width so they can
+   shrink in flex/grid layouts without forcing horizontal scroll. */
+button, input, select, textarea {
+  min-width: 0;
+}
+
+/* Fluid root font size — scales gently with viewport.
+   Used by all `rem`-based sizing automatically.
+   On phone: ~14px. On desktop: 16px. */
+html {
+  font-size: clamp(14px, 0.875rem + 0.25vw, 16px);
+}
+
+/* ===================================================================
+   Common responsive utility classes you can sprinkle in JSX
+   if you want. Optional — pages don't have to use them.
+   =================================================================== */
+
+/* A simple fluid container that caps width on large screens. */
+.fluid-container {
+  width: min(100%, 1200px);
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 32px);
+}
+
+/* Hide-on-mobile / show-on-mobile helpers. */
+@media (max-width: 640px) {
+  .hide-on-mobile { display: none !important; }
+}
+@media (min-width: 641px) {
+  .show-on-mobile-only { display: none !important; }
+}

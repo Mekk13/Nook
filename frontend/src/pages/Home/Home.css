@@ -1,14 +1,16 @@
 .home-container {
   width: 100%;
-  height: calc(100vh - 80px);
+  min-height: calc(100vh - 80px);
   background: linear-gradient(160deg, #b8c5e8 0%, #c9a8d4 50%, #c9a0d0 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow-x: hidden;
   position: relative;
   z-index: 1; /* lower than top-bar's z-index: 10 */
+  padding: 24px 16px;
+  box-sizing: border-box;
 }
 
 .home-content {
@@ -35,14 +37,17 @@
   display: flex;
   gap: 24px;
   justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 100%;
 }
 
 .nook-card {
   background: #f5f3e4;
   border: none;
   border-radius: 20px;
-  padding: 48px 28px;
-  width: 240px;
+  padding: clamp(32px, 6vw, 48px) clamp(20px, 4vw, 28px);
+  width: min(240px, 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -50,6 +55,13 @@
   transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1),
               box-shadow 0.35s ease;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 640px) {
+  .home-greeting { font-size: 24px; }
+  .home-subtext { margin-bottom: 32px; }
+  .card-group { gap: 16px; flex-direction: column; align-items: center; }
+  .nook-card { width: min(280px, 100%); padding: 28px 24px; }
 }
 
 .nook-card:hover {

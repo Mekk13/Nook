@@ -1,4 +1,4 @@
-/* --- YOUR ORIGINAL STYLES --- */
+/* --- BASE --- */
 .view-room-container {
   display: flex;
   justify-content: center;
@@ -9,9 +9,9 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 100vh;          
-  width: 100%;                 
-  box-sizing: border-box;     
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .view-card {
@@ -31,10 +31,12 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 40px;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
 .view-title {
-  font-size: 2.5rem;
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
   color: #5d669e;
   margin: 0;
 }
@@ -80,6 +82,8 @@
   min-height: 24px;
   display: flex;
   align-items: center;
+  min-width: 0;
+  word-break: break-word;
 }
 
 .full-width .detail-box {
@@ -120,15 +124,13 @@
   cursor: pointer;
 }
 
-/* --- RESPONSIVE ADDITIONS --- */
-
+/* --- RESPONSIVE --- */
 @media (max-width: 768px) {
   .view-card {
     padding: 30px 20px;
     border-radius: 30px;
     margin: 10px;
-    /* Extra padding at bottom for the absolute stats button */
-    padding-bottom: 80px; 
+    padding-bottom: 80px;
   }
 
   .view-header {
@@ -138,11 +140,6 @@
     margin-bottom: 30px;
   }
 
-  .view-title {
-    font-size: 1.8rem;
-  }
-
-  /* Stack columns vertically instead of side-by-side */
   .view-row {
     grid-template-columns: 1fr;
     gap: 20px;
@@ -164,7 +161,6 @@
     box-sizing: border-box;
   }
 
-  /* Center the Join/Cancel buttons on mobile */
   .view-header > div {
     display: flex;
     gap: 10px;
@@ -185,193 +181,4 @@
     bottom: 20px;
     text-align: center;
   }
-
-  /* --- YOUR ORIGINAL STYLES --- */
-.view-room-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  font-family: "Baloo";
-  background-image: url("../../assets/BG.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  min-height: 100vh;          
-  width: 100%;                 
-  box-sizing: border-box;     
-}
-
-.view-card {
-  background-color: #d9dbf1;
-  width: 100%;
-  max-width: 800px;
-  border-radius: 40px;
-  padding: 40px;
-  box-shadow: 20px 8px 30px rgba(64, 24, 72, 0.546);
-  position: relative;
-  border: 2px solid #6971A8;
-  box-sizing: border-box;
-}
-
-.view-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 40px;
-}
-
-.view-title {
-  font-size: 2.5rem;
-  color: #5d669e;
-  margin: 0;
-}
-
-.underline {
-  text-decoration: underline;
-  text-underline-offset: 8px;
-  text-decoration-thickness: 3px;
-}
-
-.view-content {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-}
-
-.view-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-}
-
-.detail-item {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.detail-item label {
-  color: #5d669e;
-  font-size: 1.2rem;
-  min-width: 120px;
-  text-align: left;
-  flex-shrink: 0;
-}
-
-.detail-box {
-  background-color: #fdfdf0;
-  padding: 12px 25px;
-  border-radius: 15px;
-  color: #8c96d6;
-  flex-grow: 1;
-  min-height: 24px;
-  display: flex;
-  align-items: center;
-}
-
-.full-width .detail-box {
-  min-height: 100px;
-  align-items: flex-start;
-  line-height: 1.5;
-}
-
-.nav-btn.cancel {
-  padding: 10px 25px;
-  border-radius: 20px;
-  border: 2px solid #9b3232;
-  cursor: pointer;
-  font-size: 1rem;
-  background-color: #f98d8d;
-  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
-}
-
-.nav-btn.join {
-  padding: 10px 25px;
-  border-radius: 20px;
-  border: 2px solid #799b32;
-  cursor: pointer;
-  font-size: 1rem;
-  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
-  background-color: #dbf4a7;
-}
-
-.stats-btn {
-  position: absolute;
-  bottom: 25px;
-  right: 25px;
-  background-color: #a8aef2;
-  color: white;
-  border: 2px solid #6971a8;
-  padding: 8px 20px;
-  border-radius: 30px;
-  cursor: pointer;
-}
-
-/* --- RESPONSIVE ADDITIONS --- */
-
-@media (max-width: 768px) {
-  .view-card {
-    padding: 30px 20px;
-    border-radius: 30px;
-    margin: 10px;
-    /* Extra padding at bottom for the absolute stats button */
-    padding-bottom: 80px; 
-  }
-
-  .view-header {
-    flex-direction: column;
-    gap: 20px;
-    text-align: center;
-    margin-bottom: 30px;
-  }
-
-  .view-title {
-    font-size: 1.8rem;
-  }
-
-  /* Stack columns vertically instead of side-by-side */
-  .view-row {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .detail-item {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
-
-  .detail-item label {
-    min-width: unset;
-    font-size: 1.1rem;
-  }
-
-  .detail-box {
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  /* Center the Join/Cancel buttons on mobile */
-  .view-header > div {
-    display: flex;
-    gap: 10px;
-    width: 100%;
-    justify-content: center;
-  }
-
-  .nav-btn {
-    flex: 1;
-    text-align: center;
-    padding: 10px 15px !important;
-  }
-
-  .stats-btn {
-    width: calc(100% - 40px);
-    left: 20px;
-    right: 20px;
-    bottom: 20px;
-    text-align: center;
-  }
-}
 }

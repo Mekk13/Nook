@@ -4,14 +4,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #8E9DCC;
   font-family: 'Baloo';
   position: relative;
-
-  min-width: 1200px; 
-  min-height: 800px;
+  width: 100%;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .presentation__text{
