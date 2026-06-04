@@ -18,4 +18,7 @@ WORKDIR /app
 COPY --from=build /app/target/backend-0.0.1-SNAPSHOT.jar app.jar
 
 # Render injects PORT at runtime; Spring reads it via application.properties.
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+# Use shell form so env var expansion works for the Mongo URI override.
+# Command-line args are the HIGHEST priority property source in Spring,
+# so this absolutely overrides anything from application.properties.
+ENTRYPOINT ["/bin/sh", "-c", "exec java -jar /app/app.jar --spring.data.mongodb.uri=\"$SPRING_DATA_MONGODB_URI\""]
